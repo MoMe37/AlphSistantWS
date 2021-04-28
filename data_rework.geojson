@@ -1,0 +1,62 @@
+{
+    "type": "FeatureCollection",
+    "generator": "JOSM",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "image": "yes",
+                "src": "assets/firstsphere.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.11046616393,
+                    45.75990632414
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image": "yes",
+                "src": "assets/secondsphere.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.11046616393,
+                    45.75963332481
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image": "yes",
+                "src": "assets/thirdsphere.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.11076616393,
+                    45.75963332481
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image": "yes",
+                "src": "assets/fourthsphere.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.11076616393,
+                    45.75990632414
+                ]
+            }
+        }
+    ]
+}
