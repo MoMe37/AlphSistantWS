@@ -34,35 +34,20 @@ function addCrossOnPhotosphere(origin) {
     currentValue.parentNode.removeChild(currentValue);
   });
 
-  console.log("---------------AddCross---------------");
-  console.log("---------------Origin---------------");
-  console.log("Ox : " + origin.x);
-  console.log("Oz : " + origin.z);
-  console.log("Osrc : " + origin.src);
-
   //Add new cross
   origin.neighbourList.forEach(currentValue => {
+    var index = psList.indexOf(currentValue);
     var d = Math.sqrt(Math.pow((currentValue.x - origin.x), 2) + Math.pow((currentValue.z - origin.z), 2));
     var x = Math.round(origin.x + (50/d)*(currentValue.x - origin.x));
     var z = Math.round(origin.z + (50/d)*(currentValue.z - origin.z));
 
     var cross = document.createElement("a-box");
-    cross.setAttribute("id", "cross__" + currentValue.id)
+    cross.setAttribute("id", "cross__" + index)
     cross.setAttribute("position", x + " 0 " + z);
     cross.setAttribute("scale", "5 5 5");
     cross.setAttribute("rotation", "45 45 0");
-    cross.setAttribute("cross", "index: "+ currentValue.id);
+    cross.setAttribute("cross", "index: "+ index);
     scene.appendChild(cross);
-
-    console.log("---------------Current Value ( " + currentValue.id + " )---------------");
-    console.log("x : " + currentValue.x);
-    console.log("z : " + currentValue.z);
-    console.log("src : " + currentValue.src);
-
-    console.log("---------------Cross---------------");
-    console.log("id : cross__" + currentValue.id);
-    console.log("distance : " + d);
-    console.log("position : " + x + " 0 " + z);
   });
 };
 
@@ -85,14 +70,12 @@ var getValues = function(){
 $.getJSON("data_rework.geojson", function(result){
   var xref, zref, x, z;
   var factor = 2000000;
-  var index = 0;
   var data = result.features;
-  console.log("---------------Data---------------");
   data.forEach(currentValue => {
     if(currentValue.geometry.type == "Point" && currentValue.properties.image == "yes")
     {
       //Traitement des coordonnées (Decimal degrees -> Useful coordinates)
-      if(index == 0)
+      if(psList.length == 0)
       {
         xref = currentValue.geometry.coordinates[0];
         zref = currentValue.geometry.coordinates[1];
@@ -101,12 +84,7 @@ $.getJSON("data_rework.geojson", function(result){
       x = Math.round((currentValue.geometry.coordinates[0] - xref) * factor);
       z = Math.round((currentValue.geometry.coordinates[1] - zref) * factor);
 
-      console.log("---------------"+ index +"---------------");
-      console.log("x : " + x);
-      console.log("z : " + z);
-
-      psList.push(new Photosphere(index, x, z, currentValue.properties.src));
-      index += 1;
+      psList.push(new Photosphere(x, z, currentValue.properties.src));
     }
   });
 

@@ -1,7 +1,6 @@
 class Photosphere {
 
-    constructor(id, x, z, src){
-        this.id = id;
+    constructor(x, z, src){
         this.x = x;
         this.z = z;
         this.src = src;
