@@ -6,7 +6,7 @@
             "type": "Feature",
             "properties": {
                 "image": "yes",
-                "src": "assets/firstsphere.png"
+                "src": "assets/firstsphere.jpg"
             },
             "geometry": {
                 "type": "Point",
@@ -20,7 +20,7 @@
             "type": "Feature",
             "properties": {
                 "image": "yes",
-                "src": "assets/secondsphere.png"
+                "src": "assets/secondsphere.jpg"
             },
             "geometry": {
                 "type": "Point",
@@ -34,7 +34,7 @@
             "type": "Feature",
             "properties": {
                 "image": "yes",
-                "src": "assets/thirdsphere.png"
+                "src": "assets/thirdsphere.jpg"
             },
             "geometry": {
                 "type": "Point",
@@ -48,7 +48,7 @@
             "type": "Feature",
             "properties": {
                 "image": "yes",
-                "src": "assets/fourthsphere.png"
+                "src": "assets/fourthsphere.jpg"
             },
             "geometry": {
                 "type": "Point",

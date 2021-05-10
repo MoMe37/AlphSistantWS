@@ -1,7 +1,5 @@
 var psList = [];
-var scene;
-var camera;
-var psMain;
+var scene, camera, psMain;
 
 AFRAME.registerComponent('cross', {
 
