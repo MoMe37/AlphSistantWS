@@ -9,11 +9,21 @@
 			canvas {width:100%; height:100%;}
 		</style>
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="audio.js" defer></script>
     <script type="module" src="script.js"></script>
   </head>
 
   <body style="background-color:black;">
+    <!--button for 'start recording'-->
+    <p>
+      <button id="btnStart">START RECORDING</button>
+          
+      <button id="btnStop">STOP RECORDING</button>
+      <!--button for 'stop recording'-->
+    </p>
+
+    <audio id="adioPlay" controls></audio>
+    
     <canvas class="webgl"></canvas>
   </body>
 
