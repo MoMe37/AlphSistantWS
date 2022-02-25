@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AlphSistant</title>
+    <style>
+        body {
+            margin: 0;
+            /*background image*/
+            background-image: url('https://th.bing.com/th/id/OIP.HfkOCvc39FYW4-301iVhOwHaED?w=331&h=180&c=7&r=0&o=5&pid=1.7');
+            /* background-image: url('https://th.bing.com/th/id/OIP.7IVh2w_6af4_2JQHB-9odAHaEL?w=289&h=180&c=7&r=0&o=5&pid=1.7');*/
+            background-position: center;
+        }
+
+        canvas {
+            position: absolute;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="audio.js" defer></script>
+    <script src="animation.js" defer></script>
+
+</head>
+
+<body>
+
+    <!--Animation Titre'-->
+
+    <div class="container text-center">
+        <!--Animation Titre style 1'-->
+        <div class="row font-weight-bold">
+            <div class="col-lg-12">
+                <div class="animation" style="color: aqua;height:6rem;">AlphSistant</div>
+            </div>
+        </div>
+        <!--Animation Titre style 2'-->
+        <div class="row">
+            <div class="col-lg-12 ">
+                <div class="ml4">
+                    <div class="letters letters-1" style="color: cadetblue; height:6rem;">AlphSistant</div>
+                </div>
+            </div>
+        </div>
+
+        <!--le premier modele de start stop recording'-->
+        <div class="row justify-content-center" style="margin-top:5em;">
+
+            <button class="col-lg-4" id="btnStart">START RECORDING</button>
+
+            <button class="col-lg-4" id="btnStop">STOP RECORDING</button>
+
+        </div>
+
+        <div class="row justify-content-center">
+            <audio id="adioPlay" controls></audio>
+            <canvas class="webgl"></canvas>
+        </div>
+
+
+        <!--le deuxieme modele de start stop recording'-->
+        <div class="row justify-content-center" style="margin-top:5em;">
+
+            <!--sans fontawesome icons'-->
+            <!--<button id="record">Record</button>
+    <button id="stop" disabled>Stop</button>
+    <button id="play" disabled>Play</button>
+    <button id="save" disabled>Save</button>-->
+            <!--le deuxieme modele de start stop recording avec fontawesome'-->
+            <button style="font-size:40px;color:red" id="record" class="fa fa-circle"></button>
+            <button style="font-size:40px;" id="stop" disabled class="fa fa-pause"></button>
+            <button style="font-size:40px;" id="play" disabled class="fa fa-play"></button>
+            <button style="font-size:40px;" id="save" disabled class="fa fa-download"></button>
+
+            <div id="saved-audio-messages">
+
+            </div>
+
+            <script>
+                const recordAudio = () =>
+                    new Promise(async resolve => {
+                        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                        const mediaRecorder = new MediaRecorder(stream);
+                        let audioChunks = [];
+
+                        mediaRecorder.addEventListener('dataavailable', event => {
+                            audioChunks.push(event.data);
+                        });
+
+                        const start = () => {
+                            audioChunks = [];
+                            mediaRecorder.start();
+                        };
+
+                        const stop = () =>
+                            new Promise(resolve => {
+                                mediaRecorder.addEventListener('stop', () => {
+                                    const audioBlob = new Blob(audioChunks, { type: 'audio/mpeg' });
+                                    const audioUrl = URL.createObjectURL(audioBlob);
+                                    const audio = new Audio(audioUrl);
+                                    const play = () => audio.play();
+                                    resolve({ audioChunks, audioBlob, audioUrl, play });
+                                });
+
+                                mediaRecorder.stop();
+                            });
+
+                        resolve({ start, stop });
+                    });
+
+                const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+
+                const recordButton = document.querySelector('#record');
+                const stopButton = document.querySelector('#stop');
+                const playButton = document.querySelector('#play');
+                const saveButton = document.querySelector('#save');
+                const savedAudioMessagesContainer = document.querySelector('#saved-audio-messages');
+
+                let recorder;
+                let audio;
+
+                recordButton.addEventListener('click', async () => {
+                    recordButton.setAttribute('disabled', true);
+                    stopButton.removeAttribute('disabled');
+                    playButton.setAttribute('disabled', true);
+                    saveButton.setAttribute('disabled', true);
+                    if (!recorder) {
+                        recorder = await recordAudio();
+                    }
+                    recorder.start();
+                });
+
+                stopButton.addEventListener('click', async () => {
+                    recordButton.removeAttribute('disabled');
+                    stopButton.setAttribute('disabled', true);
+                    playButton.removeAttribute('disabled');
+                    saveButton.removeAttribute('disabled');
+                    audio = await recorder.stop();
+                });
+
+                playButton.addEventListener('click', () => {
+                    audio.play();
+                });
+
+                saveButton.addEventListener('click', () => {
+
+                    FileSystemDirectoryHandle = window.showDirectoryPicker();
+
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    return function (blob, fileName) {
+                        var url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = fileName;
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+
+                    };
+
+
+
+
+                    //const reader = new FileReader();
+                    //reader.readAsDataURL(audio.audioBlob);
+                    //reader.onload = () => {
+                    //    const base64AudioMessage = reader.result.split(',')[1];
+
+                    //    fetch('/messages', {
+                    //        method: 'POST',
+                    //        headers: { 'Content-Type': 'application/json' },
+                    //        body: JSON.stringify({ message: base64AudioMessage })
+                    //    }).then(res => {
+                    //        if (res.status === 201) {
+                    //            return populateAudioMessages();
+                    //        }
+                    //        console.log('Invalid status saving audio message: ' + res.status);
+                    //    });
+                    //};
+                });
+
+                const populateAudioMessages = () => {
+                    return fetch('/messages').then(res => {
+                        if (res.status === 200) {
+                            return res.json().then(json => {
+                                json.messageFilenames.forEach(filename => {
+                                    let audioElement = document.querySelector(`[data-audio-filename="${filename}"]`);
+                                    if (!audioElement) {
+                                        audioElement = document.createElement('audio');
+                                        audioElement.src = `/messages/${filename}`;
+                                        audioElement.setAttribute('data-audio-filename', filename);
+                                        audioElement.setAttribute('controls', true);
+                                        savedAudioMessagesContainer.appendChild(audioElement);
+                                    }
+                                });
+                            });
+                        }
+                        console.log('Invalid status getting messages: ' + res.status);
+                    });
+                };
+
+                populateAudioMessages();
+            </script>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
+
+
+</body>
+
+</html>

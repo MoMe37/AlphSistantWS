@@ -1,0 +1,35 @@
+#title {
+	position: absolute;
+	top: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display:block;
+    color:white
+}
+
+.animation {
+	font-weight: 900;
+	font-size: 5.5em;
+}
+
+.animation .letter {
+	display: inline-block;
+	line-height: 1em;
+}
+
+.ml4 {
+	/*position: relative;*/
+	font-weight: 900;
+	font-size: 5.5em;
+	line-height: 2em;
+}
+
+	.ml4 .letters {
+		/*position: absolute;*/
+		/*margin: auto;
+		left: 0;
+		top: 0.3em;
+		right: 0;
+		opacity: 0;*/
+	}
