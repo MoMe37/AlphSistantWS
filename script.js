@@ -55,7 +55,7 @@ const loader = new OBJLoader();
 
 var _obj;
 
-loader.load( './public/mesh/face_001.obj', function ( obj ) {
+loader.load( './assets/suzanne.obj', function ( obj ) {
   _obj = obj
   _obj.rotation.y += 3.14;
   _obj.rotation.z += 3.14;
