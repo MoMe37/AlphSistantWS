@@ -23,6 +23,7 @@
   "homepage": "https://github.com/open-indoor/VR_Visit#readme",
   "dependencies": {
     "http-server": "^14.1.0",
+    "python-shell": "^3.0.1",
     "three": "^0.128.0"
   }
 }
