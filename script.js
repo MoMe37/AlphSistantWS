@@ -2,9 +2,12 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.129.0';
 import { OBJLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/OBJLoader.js';
 
 // Sizes
+
+
+
 const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight
+  width: 0.98 * self.innerWidth,
+  height: 0.98 * self.innerHeight
 }
 
 window.addEventListener('resize', () =>
@@ -33,7 +36,8 @@ scene.add( directionalLight );
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
-camera.position.z = 3
+camera.position.z = 0.5
+camera.position.y = -0.5
 scene.add(camera)
 
 // Renderer
@@ -51,8 +55,11 @@ const loader = new OBJLoader();
 
 var _obj;
 
-loader.load( 'assets/suzanne.obj', function ( obj ) {
+loader.load( './public/mesh/face_001.obj', function ( obj ) {
   _obj = obj
+  _obj.rotation.y += 3.14;
+  _obj.rotation.z += 3.14;
+  _obj.position.x -= 0.5;
 	scene.add( obj );
 
 }, undefined, function ( error ) {
@@ -61,68 +68,12 @@ loader.load( 'assets/suzanne.obj', function ( obj ) {
 
 } );
 
-// Sphere object
-var arr_sphere = []
-var nmb_sphere = 500
-
-for(let i = 0; i < nmb_sphere; i++)
-{
-  var sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1,5,5),
-    new THREE.MeshBasicMaterial({ color: 0xffffff })
-  )
-  var rand = Math.random() - 0.5
-  sphere.position.x = rand * 300
-  rand = Math.random() - 0.5
-  sphere.position.y = rand * 150
-  rand = Math.random() - 1
-  var rand = Math.random()
-  sphere.position.z = - rand * 100
-  arr_sphere.push(sphere)
-  scene.add(sphere)
-}
-
-for(let i = 0; i < 1000; i++)
-{
-  var sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1,9,9),
-    new THREE.MeshBasicMaterial({ color: 0xffffff })
-  )
-  var rand = (Math.random() - 0.5)
-  sphere.position.x = rand * 300
-  rand = Math.random() - 0.5
-  sphere.position.y = rand * 150
-  rand = Math.random() - 1
-  var rand = Math.random()
-  sphere.position.z = -100
-  scene.add(sphere)
-}
-
 // Animation
 var speed = 0.1
+var idx = 0
 
 function tick()
 {
-  for(let i = 0; i < nmb_sphere; i++)
-  {
-    if(arr_sphere[i].position.z < 5)
-    {
-      arr_sphere[i].position.z += speed
-    }
-    else
-    {
-      var rand = Math.random() - 0.5
-      arr_sphere[i].position.x = rand * 300
-      rand = Math.random() - 0.5
-      arr_sphere[i].position.y = rand * 150
-      rand = Math.random() - 1
-      arr_sphere[i].position.z = - 100
-    }
-  }
-
-  if(_obj)
-    _obj.rotation.y -= 0.01
-
   renderer.render(scene, camera)
 
   window.requestAnimationFrame(tick)
