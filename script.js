@@ -2,8 +2,6 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.129.0';
 import { OBJLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/OBJLoader.js';
 import { Clock } from 'https://cdn.skypack.dev/three@0.129.0';
 
-const fs = require('fs');
-
 // Sizes
 const sizes = {
   width: 0.98 * self.innerWidth,
@@ -55,7 +53,7 @@ const loader = new OBJLoader();
 
 var _obj;
 
-loader.load( './assets/suzanne.obj', function ( obj ) {
+loader.load( './public/mesh/face_001.obj', function ( obj ) {
   _obj = obj
   _obj.rotation.y += 3.14;
   _obj.rotation.z += 3.14;
