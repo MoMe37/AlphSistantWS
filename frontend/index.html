@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>AlphSistant</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sora:500">
+    <link rel="stylesheet" href="./css/style.css">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="client.js"></script>
+    <script src="audio.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html"><h1>AlphSistant</h1></a>
+            <a class="nav__link" href="#">About</a>
+            <a class="nav__link" href="#">Blog</a>
+            <a class="nav__link" href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <canvas class="webgl"></canvas>
+
+    <div class="hero-banner">
+
+      <!--button for 'start recording'-->
+      <div class="hero-banner_btn">
+        <button id="btnStart">START RECORDING</button>
+          
+        <button id="btnStop">STOP RECORDING</button>
+
+        <button id="btnStartAnimation">PLAY ANIMATION</button>
+
+      </div>
+      <!--button for 'stop recording'-->
+
+      <audio id="adioPlay" controls></audio>
+    </div>
+</body>
+
+</html>
