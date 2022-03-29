@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sora:500">
     <link rel="stylesheet" href="./public/css/style.css">
     
-    <script type="module" src="script.js"></script>
+    <!-- <script type="module" src="script.js"></script> -->
     <script src="audio.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js"></script>
   </head>
 
   <body>
@@ -22,7 +23,7 @@
         </nav>
     </header>
 
-    <canvas class="webgl"></canvas>
+    <!--<canvas class="webgl"></canvas>-->
 
     <div class="hero-banner">
 
@@ -37,6 +38,35 @@
       <!--button for 'stop recording'-->
 
       <audio id="adioPlay" controls></audio>
+
+      <script>
+        async function main(){
+          const pyodide = await loadPyodide({
+            indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.1/full/"
+          });
+          console.log();
+
+          const btnState = document.getElementById('btnStartAnimation');
+
+          btnState.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            pyodide.runPython(`
+              import librosa
+
+              def create_animation():
+                samples, sample_rate = librosa.load("./public/audio/sa1.wav", sr=None)
+                return f'le sample rate est : {sample_rate}'
+            `);
+
+            alert(pyodide.runPython("3"))
+          });
+        }
+
+        main();
+        
+      </script>
+
     </div>
 
   </body>
