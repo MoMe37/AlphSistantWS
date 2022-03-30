@@ -1,0 +1,17 @@
+.sliders{
+    position: absolute;
+    right: 0;
+    height: 94vh;
+    width: 25vw;
+    top: 3vh;
+    background-color: rgba($color: #fff, $alpha: 0.3);
+    border-radius: 15px 0 0 15px;
+    @include flexbox(center, center, column);
+    >input{
+        margin-top: 3em;
+        margin-bottom: 0.8em;
+    }
+    >label{
+        font-size: 0.8em;
+    }
+}

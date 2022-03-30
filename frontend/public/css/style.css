@@ -1,0 +1,98 @@
+* {
+  transition-duration: 0.2s;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-image: url("../../public/img/03.-Snowy-Mint_1 (1).jpg");
+  background-size: cover;
+  z-index: -2;
+}
+
+* {
+  font-family: "Sora", sans-serif;
+  font-weight: 500;
+}
+
+nav > a {
+  color: black;
+  text-decoration: none;
+}
+
+.btn {
+  padding: 1.2em 2em;
+  margin: 1em 2em;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 100px;
+}
+.btn:hover {
+  background-color: #000;
+  color: white;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: -1;
+}
+
+.header {
+  height: 15vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.header .nav {
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+.header .nav > h1 {
+  padding-right: 1rem;
+}
+.header .nav__link {
+  margin-left: 2rem;
+  text-decoration: none;
+}
+
+.hero-banner {
+  height: 85vh;
+  z-index: 10;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+}
+.hero-banner > audio {
+  margin: 2em 0;
+}
+
+.sliders {
+  position: absolute;
+  right: 0;
+  height: 94vh;
+  width: 25vw;
+  top: 3vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 15px 0 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.sliders > input {
+  margin-top: 3em;
+  margin-bottom: 0.8em;
+}
+.sliders > label {
+  font-size: 0.8em;
+}
+
+/*# sourceMappingURL=style.css.map */

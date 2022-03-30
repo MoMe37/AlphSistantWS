@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>AlphSistant</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sora:500">
+    <link rel="stylesheet" href="./public/css/style.css">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="client.js"></script>
+    <script src="audio.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html"><h1>AlphSistant</h1></a>
+            <a class="nav__link" href="#">About</a>
+            <a class="nav__link" href="#">Blog</a>
+            <a class="nav__link" href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <canvas class="webgl"></canvas>
+
+    <div class="hero-banner">
+
+      <!--button for 'start recording'-->
+      <div class="hero-banner_btn">
+
+        <button class="btn" id="btnStart">START RECORDING</button>
+          
+        <button class="btn" id="btnStop">STOP RECORDING</button>
+
+        <button class="btn" id="btnStartAnimation">PLAY ANIMATION</button>
+
+      </div>
+
+      <div class="sliders">
+
+        <input type="range" id="smile1" name="Smile"
+                min="0" max="100">
+        <label for="smile1">Basis</label>
+
+        <input type="range" id="smile2" name="Smile"
+                min="0" max="100">
+        <label for="smile2">Jaw open</label>
+
+        <input type="range" id="smile3" name="Smile"
+                min="0" max="100">
+        <label for="smile3">Left eye closed</label>
+
+        <input type="range" id="smile4" name="Smile"
+                min="0" max="100">
+        <label for="smile4">Mouth open</label>
+
+        <input type="range" id="smile5" name="Smile"
+                min="0" max="100">
+        <label for="smile5">Right eye closed</label>
+
+        <input type="range" id="smile6" name="Smile"
+                min="0" max="100">
+        <label for="smile6">Smile</label>
+
+        <input type="range" id="smile7" name="Smile"
+                min="0" max="100">
+        <label for="smile7">Smile left</label>
+
+        <input type="range" id="smile8" name="Smile"
+                min="0" max="100">
+        <label for="smile8">Smile right</label>
+
+      </div>
+      <!--button for 'stop recording'-->
+
+      <audio id="adioPlay" controls></audio>
+    </div>
+</body>
+
+</html>
