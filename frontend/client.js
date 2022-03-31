@@ -69,7 +69,7 @@ loader.load( './public/mesh/face_001.obj', function ( obj ) {
 // Rendu
 
 async function fetchJSON() {
-  const response = await fetch('http://localhost:8080/nmbFrame');
+  const response = await fetch('http://127.0.0.1:5000/nmbFrame');
   const jsonFile = await response.json();
   return jsonFile;
 }

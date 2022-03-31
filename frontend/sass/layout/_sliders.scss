@@ -7,11 +7,50 @@
     background-color: rgba($color: #fff, $alpha: 0.3);
     border-radius: 15px 0 0 15px;
     @include flexbox(center, center, column);
-    >input{
-        margin-top: 3em;
-        margin-bottom: 0.8em;
-    }
-    >label{
+    input{
+        position: relative;
+        margin: 15px 0 0 0;
         font-size: 0.8em;
+        width: 200px;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        display: block;
+        &::before{
+            position: absolute;
+            content: attr(min);
+            display: inline-block;
+            left: 0;
+            transform: translateX(calc(-100% - 5px));
+            top: -3px;
+        }
+        &::after{
+            position: absolute;
+            content: attr(max);
+            display: inline-block;
+            right: 0;
+            transform: translateX(calc(100% + 5px));
+            top: -3px;
+        }
+        &::-webkit-slider-runnable-track{
+            appearance: none;
+            background-color: #000;
+            height: 5px;
+            border-radius: 3px;
+        }
+        &::-webkit-slider-thumb{
+            appearance: none;
+            background-color: #000;
+            width: 6px;
+            height: 20px;
+            margin: -7px 0 0 0;
+            border-radius: 12px;
+            top: 45px;
+        }
+    }
+    .custom-range-slider{
+        position: relative;
+        font-size: 0.9em;
+        padding-bottom: 4em;
     }
 }
