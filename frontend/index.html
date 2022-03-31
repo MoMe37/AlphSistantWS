@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="module" src="client.js"></script>
     <script src="audio.js" defer></script>
-    <script src="slider.js" defer></script>
 </head>
 
 <body>
@@ -35,56 +34,58 @@
 
         <button class="btn" id="btnStartAnimation">PLAY ANIMATION</button>
 
+        <button class="btn" id="btnSK">SHAPE KEYS</button>
+
       </div>
 
       <div class="sliders">
 
         <label class="custom-range-slider">
                 Basis
-                <input type="range" id="smile1" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdBasis" name="Basis"
+                        min="1" max="100" value="1">
         </label>
 
         <label class="custom-range-slider">
                 Jaw open
-                <input type="range" id="smile2" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdJawOpen" name="JawOpen"
+                        min="1" max="100" value="1">
         </label>
 
         <label class="custom-range-slider">
                 Left eye closed
-                <input type="range" id="smile3" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdLeftEyeClosed" name="LeftEyeClosed"
+                        min="1" max="100" value="1">
         </label>
         
         <label class="custom-range-slider">
                 Mouth open
-                <input type="range" id="smile4" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdMouthOpen" name="MouthOpen"
+                        min="1" max="100" value="1">
         </label>
         
         <label class="custom-range-slider">
                 Right eye closed
-                <input type="range" id="smile5" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdRightEyeClosed" name="RightEyeClosed"
+                        min="1" max="100" value="1">
         </label>
         
         <label class="custom-range-slider">
                 Smile
-                <input type="range" id="smile6" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdSmile" name="Smile"
+                        min="1" max="100" value="1">
         </label>
         
         <label class="custom-range-slider">
                 Smile left
-                <input type="range" id="smile7" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdSmileLeft" name="SmileLeft"
+                        min="1" max="100" value="1">
         </label>
         
         <label class="custom-range-slider">
                 Smile right
-                <input type="range" id="smile8" name="Smile"
-                        min="0" max="100" value="0">
+                <input type="range" id="sdSmileRight" name="SmileRight"
+                        min="1" max="100" value="1">
         </label>
 
       </div>
